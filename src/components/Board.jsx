@@ -1,4 +1,5 @@
 
+import { ResetGame } from "./ResetGame";
 import { Squares } from "./Squares"
 
 export const Board =({xIsNext, squares, onPlay})=>{
@@ -39,6 +40,7 @@ const winner =  winnerFunction(squares)
  }
 
     return (<>
+        
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
       
       <div  className="board-row">
