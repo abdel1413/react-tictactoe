@@ -37,7 +37,7 @@ const winner =  winnerFunction(squares)
   
   onPlay(nextSquares)
  }
- console.log('sq', squares)
+
     return (<>
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
       
