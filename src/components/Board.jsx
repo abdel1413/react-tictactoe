@@ -1,9 +1,11 @@
-import { useState } from "react"
+
 import { Squares } from "./Squares"
 
-export const Board =()=>{
-const [squares, setSquares] =   useState(Array(9).fill(null))
-const [xIsNext, setXIsNext] = useState(true)
+export const Board =({xIsNext, squares, onPlay})=>{
+
+  //lift up these states to game component
+// const [squares, setSquares] =   useState(Array(9).fill(null))
+// const [xIsNext, setXIsNext] = useState(true)
 
 
 const winner =  winnerFunction(squares)
@@ -18,22 +20,20 @@ const winner =  winnerFunction(squares)
 
 
  const handleClick =(i)=>{
- 
-
   
-  if(squares[i]){
+  if(squares[i] || winnerFunction(squares)){
     return;; 
   }
   const nextSquares = squares.slice();
-  console.log('copy',nextSquares)
   
   if(xIsNext){
     nextSquares[i] = "X"
   }else{
     nextSquares[i] = "O"
   }
-   setSquares(nextSquares)
-   setXIsNext(!xIsNext)
+  //  setSquares(nextSquares)
+  //  setXIsNext(!xIsNext)
+  onPlay(nextSquares)
  }
     return (<>
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
@@ -74,9 +74,6 @@ const  winnerFunction = (squares)=>{
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
 
-      console.log('a',squares[a])
-      console.log('b',squares[b])
-      console.log('c',squares[c])
       
       if(squares && squares[a] === squares[b] && squares[a]===squares[c]){
         return squares[a]
