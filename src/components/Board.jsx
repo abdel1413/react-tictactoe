@@ -21,9 +21,10 @@ const winner =  winnerFunction(squares)
 
  const handleClick =(i)=>{
   
-  if(squares[i] || winnerFunction(squares)){
+  if( winnerFunction(squares)||squares[i]){
     return;; 
   }
+  
   const nextSquares = squares.slice();
   
   if(xIsNext){
@@ -33,11 +34,13 @@ const winner =  winnerFunction(squares)
   }
   //  setSquares(nextSquares)
   //  setXIsNext(!xIsNext)
+  
   onPlay(nextSquares)
  }
+ console.log('sq', squares)
     return (<>
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
-       <div>
+      
       <div  className="board-row">
         <Squares value={squares[0]} onSquareClick= { ()=> handleClick(0)} />
         <Squares value={squares[1]} onSquareClick= { ()=> handleClick(1)}/>
@@ -53,7 +56,7 @@ const winner =  winnerFunction(squares)
         <Squares value={squares[7]} onSquareClick= { ()=> handleClick(7)}/>
         <Squares value={squares[8]} onSquareClick= { ()=> handleClick(8)}/>
       </div>
-      </div>
+    
     </>)
 }
 
