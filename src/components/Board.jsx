@@ -6,8 +6,37 @@ const [squares, setSquares] =   useState(Array(9).fill(null))
 const [xIsNext, setXIsNext] = useState(true)
 
 
+const  winnerFunction = (squares)=>{
+    const winner = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+    ]
+
+    for(let i=0; i< winner.length; i++){
+      const [a,b,c]=winner[i]
+
+      console.log('a',squares[a])
+      console.log('b',squares[b])
+      console.log('c',squares[c])
+      
+      if(squares && squares[a] === squares[b] && squares[a]===squares[c]){
+        return squares[a]
+      }
+    }
+    return null;
+}
+   winnerFunction(squares)
+
  const handleClick =(i)=>{
-  console.log('sqi', squares[i])
+ 
+
+  
   if(squares[i]){
     return;; 
   }

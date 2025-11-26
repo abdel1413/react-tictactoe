@@ -29,8 +29,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
   margin: 0 auto;
+   background-color: #ffffff;
  
 }
 
@@ -40,6 +40,8 @@ body {
   font-size: 1.5em;
   font-weight: bolder;
   margin: 2px;
+  border: 1px solid crimson;
+  
 }
 
 
