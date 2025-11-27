@@ -1,5 +1,5 @@
-export const ResetGame =(handleReset)=>{
+export const ResetGame =({onReset})=>{
     return (<>
-    <button onClick={()=>handleReset}>Reset</button>
+    <button onClick={onReset} className="reset-btn">Reset</button>
     </>)
 }

@@ -44,6 +44,26 @@ body {
   
 }
 
+.reset-btn{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  float: right;
+  padding: 5px 12px;
+  font-size: 1.1em;
+  border: 1px solid skyblue;
+  background-color: skyblue;
+  border-radius: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+ 
+ 
+}
+
+.reset-btn:hover{
+  background-color: rgb(92, 173, 204);
+  color: black
+}
 
 @media (prefers-color-scheme: light) {
   :root {

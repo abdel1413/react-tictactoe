@@ -8,7 +8,7 @@ export default function Game(){
   const [currentMove, setCurrentMove] =useState(0);
 
   
-
+console.log('crr',currentMove)
   //get the current squares history
   // const currentSquares = history[history.length-1]
   //
@@ -21,7 +21,7 @@ export default function Game(){
 
 
   const handlePlay =(nextSquare) =>{
-    console.log('n',nextSquare.includes("X")|| nextSquare.includes(")"))
+    console.log('n',nextSquare.includes("X")|| nextSquare.includes("O"))
     // copy the current history and append next square 
     //setHistory([...history, nextSquare])
 
@@ -39,14 +39,16 @@ export default function Game(){
  
   }
 
-const  handleReset = (nextSquare)=>{
- console.log('consle',nextSquare)
-      
-
-   
+const  handleReset = ()=>{
+    if(currentMove>0){
+      setHistory([Array(9).fill(null)])
+      setCurrentMove(0)
+     
+    }
   }
   //create moves using history 
   const moves = history.map((squares, i)=>{
+ 
     let description;
     if(i >0){
    description = "Go to next "+ i;
@@ -56,7 +58,7 @@ const  handleReset = (nextSquare)=>{
 
 
     const jumpTo =(nextMove)=>{
-     console.log(nextMove)
+   
      setCurrentMove(nextMove)
     //  setXIsNext(nextMove%2===0)
     }
@@ -73,10 +75,9 @@ const  handleReset = (nextSquare)=>{
          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
           </div>
           <div className="reset-game">
-            <ResetGame handleReset={handleReset}/>
           </div>
+            {currentMove >0 && <ResetGame onReset={handleReset}/>}
           <div className="game-info">
-            
             <ol>{moves}</ol>
           </div>
          </div>
