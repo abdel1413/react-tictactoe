@@ -8,21 +8,25 @@ export const Board =({xIsNext, squares, onPlay})=>{
 // const [squares, setSquares] =   useState(Array(9).fill(null))
 // const [xIsNext, setXIsNext] = useState(true)
 
-
+ 
 const winner =  winnerFunction(squares)
-
+const squaresCopied = squares.slice()
+console.log('sq',squaresCopied)
   let status;
   if(winner){
     status= "Winner: "+ winner
+  }else if(squares.every(Boolean))  {
+    status = "No winner"
   }else{
     status ="next player: "+ (xIsNext ? "X" : "O")
-  }
 
+  } 
+   
 
 
  const handleClick =(i)=>{
   
-  if( winnerFunction(squares)||squares[i]){
+  if( winner||squares[i]){
     return;; 
   }
   

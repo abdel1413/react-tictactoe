@@ -6,9 +6,7 @@ export default function Game(){
   // const [xIsNext, setXIsNext] = useState(true)
   const [history, setHistory] = useState([Array(9).fill(null)])
   const [currentMove, setCurrentMove] =useState(0);
-
   
-console.log('crr',currentMove)
   //get the current squares history
   // const currentSquares = history[history.length-1]
   //
@@ -21,7 +19,6 @@ console.log('crr',currentMove)
 
 
   const handlePlay =(nextSquare) =>{
-    console.log('n',nextSquare.includes("X")|| nextSquare.includes("O"))
     // copy the current history and append next square 
     //setHistory([...history, nextSquare])
 
