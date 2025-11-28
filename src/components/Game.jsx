@@ -6,7 +6,7 @@ export default function Game(){
   // const [xIsNext, setXIsNext] = useState(true)
   const [history, setHistory] = useState([Array(9).fill(null)])
   const [currentMove, setCurrentMove] =useState(0);
-  
+
   //get the current squares history
   // const currentSquares = history[history.length-1]
   //
@@ -48,7 +48,7 @@ const  handleReset = ()=>{
  
     let description;
     if(i >0){
-   description = "Go to next "+ i;
+   description = "You are at move # "+ i;
     }else{
       description ="Go to game start"
     }
@@ -58,10 +58,13 @@ const  handleReset = ()=>{
    
      setCurrentMove(nextMove)
     //  setXIsNext(nextMove%2===0)
+   let curr =   squares.filter(i => i !=null)
+   alert(`you click on square # ${squares.indexOf(curr[0])}` )
+   
     }
 
     return <li key={i}>
-      <button onClick={()=>{jumpTo(i)}}>{description}</button>
+      <button onClick={()=>{jumpTo(i)}} >{description}</button>
     </li>
   })
   

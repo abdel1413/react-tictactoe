@@ -8,7 +8,7 @@ export const Board =({xIsNext, squares, onPlay})=>{
 // const [squares, setSquares] =   useState(Array(9).fill(null))
 // const [xIsNext, setXIsNext] = useState(true)
 
- 
+ console.log('squares b', squares)
 const winner =  winnerFunction(squares)
 const squaresCopied = squares.slice()
 console.log('sq',squaresCopied)
@@ -42,6 +42,8 @@ console.log('sq',squaresCopied)
   
   onPlay(nextSquares)
  }
+
+
 
     return (<>
         
