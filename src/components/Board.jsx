@@ -43,28 +43,30 @@ console.log('sq',squaresCopied)
   onPlay(nextSquares)
  }
 
+   const size  =3;
+   const board = [];
 
+   for(let row = 0; row< size; row++){
+      const cols =[];
+      for(let col = 0; col < size; col++){
+        const index = row * size + col;
+        cols.push( <Squares key={index} value={squares[index]} onSquareClick= { ()=> handleClick(index)} />)
+      }
+
+      board.push(<div key={row} className="row">{cols}</div>)
+      
+   }
+   board.forEach(b =>console.log(b.props.children))
 
     return (<>
         
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
       
-      <div  className="board-row">
-        <Squares value={squares[0]} onSquareClick= { ()=> handleClick(0)} />
-        <Squares value={squares[1]} onSquareClick= { ()=> handleClick(1)}/>
-        <Squares value={squares[2]} onSquareClick= { ()=> handleClick(2)}/>
-      </div>
-      <div className="board-row">
-        <Squares value={squares[3]} onSquareClick= { ()=> handleClick(3)}/>
-        <Squares value={squares[4]}onSquareClick= { ()=> handleClick(4)}/>
-        <Squares value={squares[5]} onSquareClick= { ()=> handleClick(5)}/>
-      </div>
-      <div className="board-row">
-        <Squares value={squares[6]} onSquareClick= { ()=> handleClick(6)}/>
-        <Squares value={squares[7]} onSquareClick= { ()=> handleClick(7)}/>
-        <Squares value={squares[8]} onSquareClick= { ()=> handleClick(8)}/>
-      </div>
-    
+     
+     <div className="board"> 
+      {board}
+      </div> 
+      
     </>)
 }
 
@@ -84,8 +86,6 @@ const  winnerFunction = (squares)=>{
 
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
-
-      
       if(squares && squares[a] === squares[b] && squares[a]===squares[c]){
         return squares[a]
       }

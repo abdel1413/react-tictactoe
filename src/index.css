@@ -44,6 +44,16 @@ body {
   
 }
 
+.row{
+  display: flex;
+  gap: 0;
+}
+
+.board{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 .reset-btn{
   display: flex;
   justify-content: flex-end;
