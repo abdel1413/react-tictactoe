@@ -44,6 +44,10 @@ body {
   
 }
 
+.square.highlight{
+  background-color: yellow;
+}
+
 .row{
   display: flex;
   gap: 0;

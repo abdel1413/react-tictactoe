@@ -8,12 +8,14 @@ export const Board =({xIsNext, squares, onPlay})=>{
 // const [xIsNext, setXIsNext] = useState(true)
 
 
-const winner =  winnerFunction(squares)
+const winningLine =  winnerFunction(squares)
 
 
   let status;
-  if(winner){
-    status= "Winner: "+ winner
+  if(winningLine){
+     status= "Winner: "+ winningLine
+    // let symbol = squares[winningLine[0]]
+    // status ="Winner :"+ symbol
   }else if(squares.every(Boolean))  {
     status = "No winner"
   }else{
@@ -25,7 +27,7 @@ const winner =  winnerFunction(squares)
 
  const handleClick =(i)=>{
   
-  if( winner||squares[i]){
+  if( winningLine||squares[i]){
     return;; 
   }
   
@@ -44,20 +46,25 @@ const winner =  winnerFunction(squares)
 
    const size  = 3;
    const board = [];
-
+ 
    for(let row = 0; row < size; row++){
      const cols =[];
       for(let col = 0; col < size; col++){
         const index = row * size + col;
-        cols.push( <Squares key={index} value={squares[index]} onSquareClick= { ()=> handleClick(index)} />)
+        
+        cols.push(
+           <Squares key={index}
+            value={squares[index]}
+            highlight={winningLine?.includes(index)} //highlight it if part of winning combo
+             onSquareClick= { ()=> handleClick(index)} />)
       }
     
-      cols.forEach(e => console.log(e))
+ 
 
       board.push(<div key={row} className="row">{cols}</div>)
       
    }
-   board.forEach(b =>console.log(b.props.children))
+
     
     return (<>
         
@@ -88,7 +95,8 @@ const  winnerFunction = (squares)=>{
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
       if(squares && squares[a] === squares[b] && squares[a]===squares[c]){
-        return squares[a]
+        // return squares[a]
+        return [a,b,c]
       }
     }
     return null;
