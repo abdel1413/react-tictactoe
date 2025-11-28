@@ -15,7 +15,7 @@ export default function Game(){
   // track the status.
   const xIsNext = currentMove%2===0;
   const currentSquares = history[currentMove]
-  console.log(currentSquares)
+ 
 
 
   const handlePlay =(nextSquare) =>{

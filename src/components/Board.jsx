@@ -1,5 +1,4 @@
 
-import { ResetGame } from "./ResetGame";
 import { Squares } from "./Squares"
 
 export const Board =({xIsNext, squares, onPlay})=>{
@@ -8,10 +7,10 @@ export const Board =({xIsNext, squares, onPlay})=>{
 // const [squares, setSquares] =   useState(Array(9).fill(null))
 // const [xIsNext, setXIsNext] = useState(true)
 
- console.log('squares b', squares)
+
 const winner =  winnerFunction(squares)
-const squaresCopied = squares.slice()
-console.log('sq',squaresCopied)
+
+
   let status;
   if(winner){
     status= "Winner: "+ winner
@@ -43,21 +42,23 @@ console.log('sq',squaresCopied)
   onPlay(nextSquares)
  }
 
-   const size  =3;
+   const size  = 3;
    const board = [];
 
-   for(let row = 0; row< size; row++){
-      const cols =[];
+   for(let row = 0; row < size; row++){
+     const cols =[];
       for(let col = 0; col < size; col++){
         const index = row * size + col;
         cols.push( <Squares key={index} value={squares[index]} onSquareClick= { ()=> handleClick(index)} />)
       }
+    
+      cols.forEach(e => console.log(e))
 
       board.push(<div key={row} className="row">{cols}</div>)
       
    }
    board.forEach(b =>console.log(b.props.children))
-
+    
     return (<>
         
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
