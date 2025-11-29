@@ -8,17 +8,21 @@ export const Board =({xIsNext, squares, onPlay})=>{
 // const [xIsNext, setXIsNext] = useState(true)
 
 
-const winningLine =  winnerFunction(squares)
+const winningLine =  winnerFunction(squares.squaresArray)
 console.log('win line', winningLine)
+
+
+console.log('squares b', squares.squaresArray)
+console.log('squares b', squares.location)
 
   let status;
   if(winningLine){
-    const winnerSymbol = squares[winningLine[0]]
+    const winnerSymbol = squares.squaresArray[winningLine[0]]
     console.log('s',winnerSymbol)
      status= "Winner: "+ winnerSymbol;
     // let symbol = squares[winningLine[0]]
     // status ="Winner :"+ symbol
-  }else if(squares.every(Boolean))  {
+  }else if(squares.squaresArray.every(Boolean))  {
     status = "No winner"
   }else{
     status ="next player: "+ (xIsNext ? "X" : "O")
@@ -27,9 +31,9 @@ console.log('win line', winningLine)
 
 
  const handleClick =(i)=>{
-  if( winningLine||squares[i]) return;; 
+  if( winningLine||squares.squaresArray[i]) return;; 
   
-  const nextSquares = squares.slice();
+  const nextSquares = squares.squaresArray.slice();
   
   // if(xIsNext){
   //   nextSquares[i] = "X"
@@ -41,7 +45,7 @@ console.log('win line', winningLine)
   //  setSquares(nextSquares)
   //  setXIsNext(!xIsNext)
   
-  onPlay(nextSquares)
+  onPlay(nextSquares,i)
  }
 
    const size  = 3;
@@ -54,11 +58,10 @@ console.log('win line', winningLine)
         
         cols.push(
             <Squares key={index}
-             value={squares[index]}
+             value={squares.squaresArray[index]}
              highlight={winningLine?.includes(index)} //highlight it if part of winning combo
             onSquareClick= { ()=> handleClick(index)} />)
       }
-    
       board.push(<div key={row} className="row">{cols}</div>)    
    }
 
@@ -86,10 +89,12 @@ const  winnerFunction = (squares)=>{
       
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
-      if(squares[a] && squares[a] === squares[b] && squares[a]===squares[c]){
-      //  return squares[a] //array of items
-      console.log(squares[a])
-        return [a,b,c] //array of indexes
+      if(squares.squaresArray[a] 
+        && squares.squaresArray[a] === squares.squaresArray[b] 
+        && squares.squaresArray[a]===squares.squaresArray[c]){
+      //  return squares[a] // return winning item
+     
+        return [a,b,c] //array of winning  indexes
       }
     }
     return null;

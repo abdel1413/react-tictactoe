@@ -4,7 +4,8 @@ import { ResetGame } from "./ResetGame";
 
 export default function Game(){
   // const [xIsNext, setXIsNext] = useState(true)
-  const [history, setHistory] = useState([Array(9).fill(null)])
+  const [history, setHistory] = useState([
+     {squaresArray:Array(9).fill(null), location: null}])
   const [currentMove, setCurrentMove] =useState(0);
 
   //get the current squares history
@@ -18,16 +19,19 @@ export default function Game(){
  
 
 
-  const handlePlay =(nextSquare) =>{
+  const handlePlay =(nextSquare,moveIndex) =>{
     // copy the current history and append next square 
     //setHistory([...history, nextSquare])
-
-
+    const row = Math.floor(moveIndex/3)+1;
+    const col = (moveIndex %3) +1;
+    
     //keep history up to the point or square we are viewing
     //instead of using the whole squares length;
-    const nextHistory = [...history.slice(0, currentMove+1), nextSquare]
-    setHistory(nextHistory)
+    const nextHistory = [...history.slice(0, currentMove+1),
+      {squaresArray:nextSquare, location: {row, col}} ]
 
+    setHistory(nextHistory)
+    console.log(history)
     //each time we make a move, update current move 
     //to point to latest history  entry
     setCurrentMove(nextHistory.length-1)
@@ -44,34 +48,31 @@ const  handleReset = ()=>{
     }
   }
   //create moves using history 
-  const moves = history.map((squares, i)=>{
- 
+  const moves = history.map((step, move)=>{
+    console.log('ste',step, 'move',move)
     let description;
-    if(i >0){
-   description = "You are at move # "+ i;
+    if(move > 0){
+      const {row, col} = step.location
+   description = `You are at move #${move} [${row}${col}]` ;
     }else{
       description ="Go to game start"
     }
 
-
     const jumpTo =(nextMove)=>{
-   
      setCurrentMove(nextMove)
     //  setXIsNext(nextMove%2===0)
-   let curr =   squares.filter(i => i !=null)
-   alert(`you click on square # ${squares.indexOf(curr[0])}` )
+   let curr =   step.filter(i => i !=null)
+   alert(`you click on square # ${step.indexOf(curr[0])}` )
    
     }
-
-    return <li key={i}>
-      <button onClick={()=>{jumpTo(i)}} >{description}</button>
+    return <li key={move}>
+      <button onClick={()=>{jumpTo(move)}} >{description}</button>
     </li>
   })
-  
+
     return (<>
          <div className="game">
           <div className="game-board">
-          
          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
           </div>
           <div className="reset-game">
