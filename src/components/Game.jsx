@@ -41,8 +41,9 @@ export default function Game(){
   }
 
 const  handleReset = ()=>{
+  console.log('cccc', currentMove)
     if(currentMove>0){
-      setHistory([Array(9).fill(null)])
+      setHistory([{squaresArray:Array(9).fill(null), location: null}])
       setCurrentMove(0)
      
     }
@@ -53,7 +54,7 @@ const  handleReset = ()=>{
     let description;
     if(move > 0){
       const {row, col} = step.location
-   description = `You are at move #${move} [${row}${col}]` ;
+   description = `You are at move #${move}, location: [${row}, ${col}]` ;
     }else{
       description ="Go to game start"
     }
@@ -61,8 +62,12 @@ const  handleReset = ()=>{
     const jumpTo =(nextMove)=>{
      setCurrentMove(nextMove)
     //  setXIsNext(nextMove%2===0)
-   let curr =   step.filter(i => i !=null)
-   alert(`you click on square # ${step.indexOf(curr[0])}` )
+    console.log('sqarra',step.squaresArray)
+   let curr =   step.squaresArray.filter(i =>{
+    console.log('i',i)
+    return  i !=null})
+   console.log('cuur',curr)
+   alert(`you click on square # ${step.squaresArray.indexOf(curr[0])}` )
    
     }
     return <li key={move}>

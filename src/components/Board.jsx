@@ -9,16 +9,11 @@ export const Board =({xIsNext, squares, onPlay})=>{
 
 
 const winningLine =  winnerFunction(squares.squaresArray)
-console.log('win line', winningLine)
-
-
-console.log('squares b', squares.squaresArray)
-console.log('squares b', squares.location)
 
   let status;
   if(winningLine){
     const winnerSymbol = squares.squaresArray[winningLine[0]]
-    console.log('s',winnerSymbol)
+   
      status= "Winner: "+ winnerSymbol;
     // let symbol = squares[winningLine[0]]
     // status ="Winner :"+ symbol
@@ -28,8 +23,6 @@ console.log('squares b', squares.location)
     status ="next player: "+ (xIsNext ? "X" : "O")
   } 
    
-
-
  const handleClick =(i)=>{
   if( winningLine||squares.squaresArray[i]) return;; 
   
@@ -89,9 +82,10 @@ const  winnerFunction = (squares)=>{
       
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
-      if(squares.squaresArray[a] 
-        && squares.squaresArray[a] === squares.squaresArray[b] 
-        && squares.squaresArray[a]===squares.squaresArray[c]){
+      
+      if(squares[a] 
+        && squares[a] === squares[b] 
+        && squares[a]===squares[c]){
       //  return squares[a] // return winning item
      
         return [a,b,c] //array of winning  indexes
