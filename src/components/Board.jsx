@@ -9,35 +9,35 @@ export const Board =({xIsNext, squares, onPlay})=>{
 
 
 const winningLine =  winnerFunction(squares)
-
+console.log('win line', winningLine)
 
   let status;
   if(winningLine){
-     status= "Winner: "+ winningLine
+    const winnerSymbol = squares[winningLine[0]]
+    console.log('s',winnerSymbol)
+     status= "Winner: "+ winnerSymbol;
     // let symbol = squares[winningLine[0]]
     // status ="Winner :"+ symbol
   }else if(squares.every(Boolean))  {
     status = "No winner"
   }else{
     status ="next player: "+ (xIsNext ? "X" : "O")
-
   } 
    
 
 
  const handleClick =(i)=>{
-  
-  if( winningLine||squares[i]){
-    return;; 
-  }
+  if( winningLine||squares[i]) return;; 
   
   const nextSquares = squares.slice();
   
-  if(xIsNext){
-    nextSquares[i] = "X"
-  }else{
-    nextSquares[i] = "O"
-  }
+  // if(xIsNext){
+  //   nextSquares[i] = "X"
+  // }else{
+  //   nextSquares[i] = "O"
+  // }
+  nextSquares[i] = xIsNext? "X": "O"
+
   //  setSquares(nextSquares)
   //  setXIsNext(!xIsNext)
   
@@ -50,31 +50,23 @@ const winningLine =  winnerFunction(squares)
    for(let row = 0; row < size; row++){
      const cols =[];
       for(let col = 0; col < size; col++){
-        const index = row * size + col;
+        const index = row * size + col;       
         
         cols.push(
-           <Squares key={index}
-            value={squares[index]}
-            highlight={winningLine?.includes(index)} //highlight it if part of winning combo
-             onSquareClick= { ()=> handleClick(index)} />)
+            <Squares key={index}
+             value={squares[index]}
+             highlight={winningLine?.includes(index)} //highlight it if part of winning combo
+            onSquareClick= { ()=> handleClick(index)} />)
       }
     
- 
-
-      board.push(<div key={row} className="row">{cols}</div>)
-      
+      board.push(<div key={row} className="row">{cols}</div>)    
    }
 
-    
     return (<>
-        
        <h2 className="status" style={{color:"skyblue"}}>{status}</h2>
-      
-     
-     <div className="board"> 
+       <div className="board"> 
       {board}
-      </div> 
-      
+      </div>  
     </>)
 }
 
@@ -90,13 +82,14 @@ const  winnerFunction = (squares)=>{
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
-    ]
-
+    ] 
+      
     for(let i=0; i< winner.length; i++){
       const [a,b,c]=winner[i]
-      if(squares && squares[a] === squares[b] && squares[a]===squares[c]){
-        // return squares[a]
-        return [a,b,c]
+      if(squares[a] && squares[a] === squares[b] && squares[a]===squares[c]){
+      //  return squares[a] //array of items
+      console.log(squares[a])
+        return [a,b,c] //array of indexes
       }
     }
     return null;
