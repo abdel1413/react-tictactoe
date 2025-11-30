@@ -14,7 +14,7 @@ export default function Game(){
   //as we know that currentMove return true of false, 
   //we can  set its value to xIsNext. no need to use useState to
   // track the status.
-  const xIsNext = currentMove%2===0;
+  const xIsNext = currentMove %2===0;
   const currentSquares = history[currentMove]
  
 
@@ -22,6 +22,7 @@ export default function Game(){
   const handlePlay =(nextSquare,moveIndex) =>{
     // copy the current history and append next square 
     //setHistory([...history, nextSquare])
+
     const row = Math.floor(moveIndex/3)+1;
     const col = (moveIndex %3) +1;
     
@@ -42,7 +43,7 @@ export default function Game(){
 
 const  handleReset = ()=>{
   console.log('cccc', currentMove)
-    if(currentMove>0){
+    if(currentMove >0){
       setHistory([{squaresArray:Array(9).fill(null), location: null}])
       setCurrentMove(0)
      
@@ -54,7 +55,7 @@ const  handleReset = ()=>{
     let description;
     if(move > 0){
       const {row, col} = step.location
-   description = `You are at move #${move}, location: [${row}, ${col}]` ;
+   description = `Go to #${move}, location: [${row}, ${col}]` ;
     }else{
       description ="Go to game start"
     }
@@ -66,7 +67,7 @@ const  handleReset = ()=>{
    let curr =   step.squaresArray.filter(i =>{
     console.log('i',i)
     return  i !=null})
-   console.log('cuur',curr)
+   
    alert(`you click on square # ${step.squaresArray.indexOf(curr[0])}` )
    
     }
@@ -81,8 +82,8 @@ const  handleReset = ()=>{
          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
           </div>
           <div className="reset-game">
-          </div>
             {currentMove >0 && <ResetGame onReset={handleReset}/>}
+          </div>
           <div className="game-info">
             <ol>{moves}</ol>
           </div>

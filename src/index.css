@@ -74,10 +74,31 @@ body {
  
 }
 
+
+
 .reset-btn:hover{
   background-color: rgb(92, 173, 204);
-  color: black
+  color: black;
+  display: inline-block;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
 }
+
+ ul{
+ 
+  list-style-type: none
+  padding: 0;
+  margin: .5em 0;  
+
+ }
+.game-info{
+  margin-top: 20px;
+} 
+.reset-game{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+} 
 
 @media (prefers-color-scheme: light) {
   :root {

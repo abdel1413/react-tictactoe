@@ -24,21 +24,21 @@ const winningLine =  winnerFunction(squares.squaresArray)
   } 
    
  const handleClick =(i)=>{
-  if( winningLine||squares.squaresArray[i]) return;; 
+  if( winningLine||squares.squaresArray[i]) return;
   
-  const nextSquares = squares.squaresArray.slice();
+  const squareCopy = squares.squaresArray.slice();
   
   // if(xIsNext){
   //   nextSquares[i] = "X"
   // }else{
   //   nextSquares[i] = "O"
   // }
-  nextSquares[i] = xIsNext? "X": "O"
+  squareCopy[i] = xIsNext? "X": "O"
 
   //  setSquares(nextSquares)
   //  setXIsNext(!xIsNext)
   
-  onPlay(nextSquares,i)
+  onPlay(squareCopy,i)
  }
 
    const size  = 3;
